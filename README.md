@@ -163,3 +163,27 @@ The recurrence-interval outputs are saved in `results_dir`, which is set in `con
 ## Publication logic
 
 The split between scripts makes the workflow clearer and more reproducible. The soil-depth evolution model only needs to be rerun when the DEM, hollow initialization, or transport/production parameters change. The FS and RI analysis can be rerun independently for different cohesion or saturation scenarios.
+
+## Plotting manuscript figures
+
+After running `01_run_soil_transport.py` and `02_extract_and_calculate_RI.py`, the plotting scripts can be run independently. Each script reads the RI output CSVs from the results folder defined in `config.py` and saves figures to a `figures/` folder inside the project directory.
+
+Run them in this order if you want all manuscript figures:
+
+```bash
+python 03_plot_ri.py
+python 04_plot_soil_depth.py
+python 05_plot_volume.py
+python 06_plot_normalized_ri.py
+```
+
+The plotting scripts are separated so individual figures can be regenerated without rerunning the soil-transport model or the RI calculation. This is useful when changing figure styling, axis limits, legends, or manuscript formatting.
+
+The plotting workflow is:
+
+1. `03_plot_ri.py` plots recurrence interval as a function of hollow slope.
+2. `04_plot_soil_depth.py` plots soil depth at failure as a function of hollow slope.
+3. `05_plot_volume.py` calculates critical area/failure volume and plots RI with point size scaled by volume.
+4. `06_plot_normalized_ri.py` plots recurrence interval normalized by cohesion.
+
+`plot_helpers.py` contains shared helper functions used by the plotting scripts.
