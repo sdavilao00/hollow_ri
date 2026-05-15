@@ -22,9 +22,10 @@ The workflow is intended for clipped DEM subsets that contain characteristic hol
 
 Each model extent requires:
 
-- A clipped DEM, for example `ext26.tif`
-- A point shapefile marking hollow center locations, for example `ext26.shp`
-- A downslope polyline shapefile used to extract representative hollow slope, for example `polylines/ext26_lines.shp`
+- A clipped DEM, for example `extX.tif`
+- - A slope DEM, for example `slope.tif`
+- A point shapefile marking hollow center locations, for example `extX.shp`
+- A downslope polyline shapefile used to extract representative hollow slope, for example `polylines/extX_lines.shp`
 
 The scripts reproject outputs to a common projected coordinate reference system, typically EPSG:32610.
 
