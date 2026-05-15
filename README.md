@@ -164,26 +164,28 @@ The recurrence-interval outputs are saved in `results_dir`, which is set in `con
 
 The split between scripts makes the workflow clearer and more reproducible. The soil-depth evolution model only needs to be rerun when the DEM, hollow initialization, or transport/production parameters change. The FS and RI analysis can be rerun independently for different cohesion or saturation scenarios.
 
-## Plotting manuscript figures
+### 5. Generate manuscript figures and post-processing outputs
 
-After running `01_run_soil_transport.py` and `02_extract_and_calculate_RI.py`, the plotting scripts can be run independently. Each script reads the RI output CSVs from the results folder defined in `config.py` and saves figures to a `figures/` folder inside the project directory.
-
-Run them in this order if you want all manuscript figures:
+After the RI outputs are created, run whichever plotting scripts are needed:
 
 ```bash
 python 03_plot_ri.py
 python 04_plot_soil_depth.py
 python 05_plot_volume.py
 python 06_plot_normalized_ri.py
+python 07_plot_fs_soil_depth_diagnostic.py
+python 08_plot_erosion.py
+python 09_plot_critical_slope.py
 ```
 
-The plotting scripts are separated so individual figures can be regenerated without rerunning the soil-transport model or the RI calculation. This is useful when changing figure styling, axis limits, legends, or manuscript formatting.
+The diagnostic script `07_plot_fs_soil_depth_diagnostic.py` is intended for a single selected hollow. Edit these values near the top of the file before running:
 
-The plotting workflow is:
+```python
+TARGET_POINT_ID = 1
+DIAGNOSTIC_COHESION = 1920
+DIAGNOSTIC_SATURATION = 1.0
+```
 
-1. `03_plot_ri.py` plots recurrence interval as a function of hollow slope.
-2. `04_plot_soil_depth.py` plots soil depth at failure as a function of hollow slope.
-3. `05_plot_volume.py` calculates critical area/failure volume and plots RI with point size scaled by volume.
-4. `06_plot_normalized_ri.py` plots recurrence interval normalized by cohesion.
+The erosion script `08_plot_erosion.py` expects contributing-area zonal-statistics tables named `zonal_9.csv` and `zonal_15.csv` in the project folder unless those filenames are changed near the top of the script.
 
-`plot_helpers.py` contains shared helper functions used by the plotting scripts.
+The critical-slope script `09_plot_critical_slope.py` saves and reuses `critical_slopes.csv` in the results folder. If the table already exists, the script will load it rather than recomputing unless settings are changed.
