@@ -48,24 +48,24 @@ conda activate hollow-ri-model
 A simple project folder can look like this:
 
 ```text
-newcodesoil/
+hollow_ri/
 ├── config.py
 ├── 01_run_soil_transport.py
 ├── 02_extract_and_calculate_RI.py
 ├── environment.yml
 ├── README_workflow.md
-├── ext26.tif
-├── ext26.shp
-├── ext26.shx
-├── ext26.dbf
-├── ext26.prj
-├── dem_smooth_m_warp.tif
-├── slope_smooth_m_warp.tif
+├── extX.tif
+├── extX.shp
+├── extX.shx
+├── extX.dbf
+├── extX.prj
+├── dem.tif
+├── slope.tif
 ├── polylines/
-│   ├── ext26_lines.shp
-│   ├── ext26_lines.shx
-│   ├── ext26_lines.dbf
-│   └── ext26_lines.prj
+│   ├── extX_lines.shp
+│   ├── extX_lines.shx
+│   ├── extX_lines.dbf
+│   └── extX_lines.prj
 ├── simulation_results/
 ├── reproj_shp/
 └── results/
