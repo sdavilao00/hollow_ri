@@ -12,7 +12,7 @@ import pandas as pd
 
 def get_figure_dir(cfg):
     """Create and return the manuscript figure output directory."""
-    fig_dir = cfg.PROJECT_DIR / "figures"
+    fig_dir = cfg.base_dir / "figures"
     fig_dir.mkdir(parents=True, exist_ok=True)
     return fig_dir
 
